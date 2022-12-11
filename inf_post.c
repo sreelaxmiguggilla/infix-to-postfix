@@ -7,17 +7,17 @@ char stack[10];
 int  top=-1;
 void main()
 {
-	char st[10],postfix[10];
+	char infix[10],postfix[10];
 	int i,j=0;
 	printf("eterstrig");
-	scanf("%s",st);
-	printf("%s",st);
-	for(i=0;st[i]!='\0';i++)
+	scanf("%s",infix);
+	
+	for(i=0;infix[i]!='\0';i++)
 	{
-	//	printf("%c",st[i]);
-	if(st[i]=='(')	
-	push(st[i]);
-	else if(st[i]==')')
+	
+	if(infix[i]=='(')	
+	push(infix[i]);
+	else if(infix[i]==')')
 	{
 		while(stack[top]!='(')
 		{
@@ -26,19 +26,19 @@ void main()
 	    }
 	    pop();
 	}
-	else if(st[i]>='a' && st[i]<='z')
+	else if(infix[i]>='a' && infix[i]<='z')
 	{
-	postfix[j]=st[i];
+	postfix[j]=infix[i];
 	j++;
 	}
 	else
 	{
-		while(prec(stack[top])>=prec(st[i]))
+		while(prec(stack[top])>=prec(infix[i]))
 		{
 			postfix[j]=pop();
 			j++;
 		}
-		push(st[i]);
+		push(infix[i]);
 	}
 }
 postfix[j]='\0';
